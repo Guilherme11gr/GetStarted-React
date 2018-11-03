@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { UserServices } from '../services/UserServices';
+import PropTypes from 'prop-types';
 
 class SearchUser extends Component {
 
- async handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
     const user = await UserServices.getByUsername(this.refs.username.value);
-    console.log(user);
+    this.props.updateUser(user.data);
     const repos = await UserServices.getReposByUsername(this.refs.username.value);
-    console.log(repos);
+    this.props.updateRepos(repos.data);
   }
 
   render() {
@@ -30,5 +31,10 @@ class SearchUser extends Component {
     );
   }
 }
+
+SearchUser.propTypes = {
+  updateUser: PropTypes.func.isRequired,
+  updateRepos: PropTypes.func.isRequired,
+} 
 
 export default SearchUser;
