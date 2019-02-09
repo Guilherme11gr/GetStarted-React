@@ -1,4 +1,4 @@
-import React, { Component } from 'react'; // Stateless component
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class UserRepos extends Component {
